@@ -1,3 +1,5 @@
+mod secret;
+
 use crate::Streamable;
 use std::time::{SystemTime, UNIX_EPOCH};
 

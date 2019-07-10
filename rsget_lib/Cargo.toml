@@ -28,6 +28,7 @@ reqwest = "0.9.5"
 parking_lot = "0.7.1"
 rand = "0.6.5"
 #stream_lib = { version = "0.3.0", path = "../stream_lib", features = ["spinner"] }
+deno = "0.11"
 
 [dependencies.stream_lib]
 default-features = false

@@ -1,4 +1,4 @@
-use deno;
+use duktape-rs::DukContext;
 use rand;
 use rand::seq::SliceRandom;
 use regex::Regex;
@@ -103,7 +103,17 @@ fn run_secret(mut js_enc: String) -> String {
     let js_enc = js_enc.replace(&to_replace, &js_patch);
 
     let js_md5 = include_str!("md5.min.js");
-    println!("{}", js_md5);
+
+    let mut ctx = DukContext::new();
+    let _ = ctx.eval_string(js_md5).unwrap();
+    let _ = ctx.eval_string(js_dom).unwrap();
+    let _ = ctx.eval_string(js_enc).unwrap();
+    let _ = ctx.eval_string(js_debug).unwrap();
+    let res = ctx.eval_string("ub98484234({vid}, {did}, {tt})",
+                              vid = unimplemented!(),
+                              did = unimplemented!(),
+                              tt  = unimplemented!(),
+                              ).unwrap();
     String::new()
 }
 

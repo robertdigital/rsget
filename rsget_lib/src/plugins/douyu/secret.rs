@@ -103,12 +103,18 @@ fn run_secret(mut js_enc: String) -> String {
     let js_enc = js_enc.replace(&to_replace, &js_patch);
 
     let js_md5 = include_str!("md5.min.js");
-
+    
     let mut ctx = DukContext::new();
     let _ = ctx.eval_string(js_md5).unwrap();
     let _ = ctx.eval_string(js_dom).unwrap();
     let _ = ctx.eval_string(js_enc).unwrap();
     let _ = ctx.eval_string(js_debug).unwrap();
+
+    use uuid::Uuid;
+    let did = Uuid::new_v4();
+    let tt = SystemTime::now().to_string();
+
+    
     let res = ctx.eval_string("ub98484234({vid}, {did}, {tt})",
                               vid = unimplemented!(),
                               did = unimplemented!(),
